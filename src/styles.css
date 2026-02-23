@@ -111,8 +111,10 @@ footer{margin-top:20px;color:var(--muted);font-size:13px;text-align:center}
   .brand{margin-bottom:0;display:flex;align-items:center;justify-content:space-between}
   .brand-mark{font-size:22px}
   .sidebar .toggle{margin:0;width:auto}
-  .app-shell.sidebar-collapsed .sidebar{height:auto}
+  .app-shell.sidebar-collapsed .sidebar{height:auto;padding:8px 12px}
   .app-shell.sidebar-collapsed .side-nav{display:none}
+  .app-shell.sidebar-collapsed .brand-sub{display:none}
+  .app-shell.sidebar-collapsed .side-footer{display:none}
   .side-nav{margin-top:10px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
   .nav-item{justify-content:center}
   .content{padding:16px}
