@@ -27,9 +27,13 @@ export default function Book(){
     // if URL parsing fails, leave calEmbedUrl as-is
   }
 
+  const params = new URLSearchParams(window.location.search)
+  const serviceParam = params.get('service')
+
   return (
     <section>
       <h2>Book an Appointment</h2>
+      {serviceParam && <p className="badge">Selected service: {serviceParam}</p>}
       <p>You can book using our embedded scheduler below or follow the link to open the booking page.</p>
       <div style={{margin: '16px 0'}}>
         <a href={calComBookingUrl} target="_blank" rel="noreferrer" className="btn">Open booking page</a>

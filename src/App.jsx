@@ -21,35 +21,50 @@ function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
-        <div className="container">
-          <header className="site-header">
-            <h1>Bright Smile Dental Clinic</h1>
-            <p>Manage patient appointments quickly and easily.</p>
-            <nav className="nav">
+        <div className="app-shell">
+          <aside className="sidebar">
+            <div className="brand">
+              <div className="brand-mark">🦷</div>
+              <div>
+                <div className="brand-name">Bright Smile</div>
+                <div className="brand-sub">Dental Clinic</div>
+              </div>
+            </div>
+            <nav className="side-nav">
               <Link to="/">Home</Link>
               <Link to="/book">Book</Link>
               <Link to="/services">Services</Link>
               <Link to="/patients">Patients</Link>
               <Link to="/dashboard">Admin</Link>
-              <AuthButtons />
+              <Link to="/login">Login</Link>
             </nav>
-          </header>
+            <div className="side-footer">
+              <AuthButtons />
+            </div>
+          </aside>
 
-          <main>
-            <Routes>
-              <Route path="/" element={<Home/>} />
-              <Route path="/book" element={<Book/>} />
-              <Route path="/services" element={<Services/>} />
-              <Route path="/login" element={<Login/>} />
-              <Route path="/patients" element={<RequireAuth><Patients/></RequireAuth>} />
-              <Route path="/dashboard" element={<RequireAuth><Dashboard/></RequireAuth>} />
-              <Route path="*" element={<NotFound/>} />
-            </Routes>
-          </main>
+          <div className="content">
+            <header className="site-header">
+              <h1>Bright Smile Dental Clinic</h1>
+              <p>Manage patient appointments quickly and easily.</p>
+            </header>
 
-          <footer>
-            <small>Built for demo — data stored in Supabase.</small>
-          </footer>
+            <main>
+              <Routes>
+                <Route path="/" element={<Home/>} />
+                <Route path="/book" element={<Book/>} />
+                <Route path="/services" element={<Services/>} />
+                <Route path="/login" element={<Login/>} />
+                <Route path="/patients" element={<RequireAuth><Patients/></RequireAuth>} />
+                <Route path="/dashboard" element={<RequireAuth><Dashboard/></RequireAuth>} />
+                <Route path="*" element={<NotFound/>} />
+              </Routes>
+            </main>
+
+            <footer>
+              <small>Built for demo — data stored in Supabase.</small>
+            </footer>
+          </div>
         </div>
       </BrowserRouter>
     </AuthProvider>
