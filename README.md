@@ -47,6 +47,31 @@ Supabase + Cal.com integration (optional, recommended for full demo)
 	- `SUPABASE_SERVICE_ROLE_KEY` = your Supabase service role key (used only by the serverless webhook)
 	- `VITE_CAL_COM_URL` = your Cal.com booking page URL (e.g. `https://cal.com/your-username/15min`)
 
+Auth setup (staff login)
+
+1. In Supabase, enable Email auth (Authentication -> Providers -> Email).
+2. Create a staff account (Authentication -> Users -> Invite user or create via app).
+3. Admin pages (`/dashboard`, `/patients`) require authentication.
+
+CRUD data access policies (recommended)
+
+Enable RLS and add policies so only authenticated staff can access clinic data:
+
+```sql
+alter table public.patients enable row level security;
+alter table public.appointments enable row level security;
+
+create policy "Patients readable by staff" on public.patients
+	for select using (auth.role() = 'authenticated');
+create policy "Patients writable by staff" on public.patients
+	for all using (auth.role() = 'authenticated') with check (auth.role() = 'authenticated');
+
+create policy "Appointments readable by staff" on public.appointments
+	for select using (auth.role() = 'authenticated');
+create policy "Appointments writable by staff" on public.appointments
+	for all using (auth.role() = 'authenticated') with check (auth.role() = 'authenticated');
+```
+
 3. Cal.com integration
 
 	- Create a Cal.com account and a booking page for the clinic at https://cal.com.
