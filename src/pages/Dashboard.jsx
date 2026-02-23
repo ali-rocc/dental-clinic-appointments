@@ -22,7 +22,7 @@ export default function Dashboard(){
   return (
     <section>
       <h2>Admin Dashboard</h2>
-      <p>Shows recent appointments (populated via Cal.com webhooks -> Supabase or manual inserts).</p>
+      <p>Shows recent appointments (populated via Cal.com webhooks → Supabase or manual inserts).</p>
       {appointments.length === 0 ? <p>No appointments yet.</p> : (
         <ul>
           {appointments.map(a => (
