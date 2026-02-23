@@ -2,7 +2,11 @@ import React from 'react'
 
 export default function Book(){
   // Replace the cal.com link below with your clinic's booking page URL
-  const calComBookingUrl = import.meta.env.VITE_CAL_COM_URL || 'https://cal.com/your-username/15min'
+  let calComBookingUrl = import.meta.env.VITE_CAL_COM_URL || 'https://cal.com/your-username/15min'
+  // Normalize: ensure URL has protocol so iframe/src works when env var lacked https://
+  if (calComBookingUrl && !/^[a-zA-Z][a-zA-Z0-9+.-]*:\/\//.test(calComBookingUrl)) {
+    calComBookingUrl = 'https://' + calComBookingUrl
+  }
 
   return (
     <section>
