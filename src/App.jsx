@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { BrowserRouter, Routes, Route, Link, Navigate } from 'react-router-dom'
 import Home from './pages/Home'
 import Book from './pages/Book'
@@ -19,6 +19,14 @@ function RequireAuth({ children }) {
 
 function App() {
   const [sidebarOpen, setSidebarOpen] = useState(true)
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 900px)')
+    const handle = () => setSidebarOpen(!mq.matches)
+    handle()
+    mq.addEventListener('change', handle)
+    return () => mq.removeEventListener('change', handle)
+  }, [])
 
   return (
     <AuthProvider>
