@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { BrowserRouter, Routes, Route, Link, Navigate } from 'react-router-dom'
 import Home from './pages/Home'
 import Book from './pages/Book'
@@ -18,10 +18,12 @@ function RequireAuth({ children }) {
 }
 
 function App() {
+  const [sidebarOpen, setSidebarOpen] = useState(true)
+
   return (
     <AuthProvider>
       <BrowserRouter>
-        <div className="app-shell">
+        <div className={`app-shell ${sidebarOpen ? '' : 'sidebar-collapsed'}`}>
           <aside className="sidebar">
             <div className="brand">
               <div className="brand-mark">🦷</div>
@@ -30,7 +32,15 @@ function App() {
                 <div className="brand-sub">Dental Clinic</div>
               </div>
             </div>
-            <nav className="side-nav">
+            <button
+              className="small toggle"
+              onClick={() => setSidebarOpen((s) => !s)}
+              aria-expanded={sidebarOpen}
+              aria-controls="side-nav"
+            >
+              {sidebarOpen ? 'Collapse menu' : 'Expand menu'}
+            </button>
+            <nav className="side-nav" id="side-nav">
               <Link to="/">Home</Link>
               <Link to="/book">Book</Link>
               <Link to="/services">Services</Link>
