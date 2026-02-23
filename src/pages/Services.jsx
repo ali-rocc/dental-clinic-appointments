@@ -10,11 +10,14 @@ export default function Services(){
   return (
     <section>
       <h2>Services</h2>
-      <ul>
+      <div className="grid grid-3" style={{marginTop:12}}>
         {services.map(s => (
-          <li key={s.id}>{s.name} — {s.duration} — <strong>{s.price}</strong></li>
+          <div key={s.id} className="card">
+            <h3>{s.name}</h3>
+            <p>{s.duration} • <strong>{s.price}</strong></p>
+          </div>
         ))}
-      </ul>
+      </div>
     </section>
   )
 }

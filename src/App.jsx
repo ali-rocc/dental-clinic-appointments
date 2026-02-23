@@ -22,15 +22,15 @@ function App() {
     <AuthProvider>
       <BrowserRouter>
         <div className="container">
-          <header>
+          <header className="site-header">
             <h1>Bright Smile Dental Clinic</h1>
             <p>Manage patient appointments quickly and easily.</p>
-            <nav style={{marginTop:10}}>
-              <Link to="/" style={{marginRight:12}}>Home</Link>
-              <Link to="/book" style={{marginRight:12}}>Book</Link>
-              <Link to="/services" style={{marginRight:12}}>Services</Link>
-              <Link to="/patients" style={{marginRight:12}}>Patients</Link>
-              <Link to="/dashboard" style={{marginRight:12}}>Admin</Link>
+            <nav className="nav">
+              <Link to="/">Home</Link>
+              <Link to="/book">Book</Link>
+              <Link to="/services">Services</Link>
+              <Link to="/patients">Patients</Link>
+              <Link to="/dashboard">Admin</Link>
               <AuthButtons />
             </nav>
           </header>
