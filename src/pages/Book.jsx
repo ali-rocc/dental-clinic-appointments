@@ -32,11 +32,11 @@ export default function Book(){
 
   return (
     <section>
-      <h2>Book an Appointment</h2>
-      {serviceParam && <p className="badge">Selected service: {serviceParam}</p>}
-      <p>You can book using our embedded scheduler below or follow the link to open the booking page.</p>
+      <h2>حجز موعد</h2>
+      {serviceParam && <p className="badge">الخدمة المختارة: {serviceParam}</p>}
+      <p>يمكنك الحجز عبر الجدول المدمج أدناه أو فتح صفحة الحجز مباشرة.</p>
       <div style={{margin: '16px 0'}}>
-        <a href={calComBookingUrl} target="_blank" rel="noreferrer" className="btn">Open booking page</a>
+        <a href={calComBookingUrl} target="_blank" rel="noreferrer" className="btn">فتح صفحة الحجز</a>
       </div>
 
       <div style={{marginTop:20}}>
@@ -47,7 +47,7 @@ export default function Book(){
         />
       </div>
 
-      <p style={{marginTop:12,color:'#6b7280'}}>Tip: To integrate deeper, create a Cal.com webhook that sends booking events to `/api/calcom-webhook` and store them in Supabase for your admin dashboard.</p>
+      <p style={{marginTop:12,color:'#6b7280'}}>ملاحظة: للتكامل العميق، أنشئ Webhook في Cal.com يرسل الحجوزات إلى `/api/calcom-webhook` واحفظها في Supabase للوحة الإدارة.</p>
     </section>
   )
 }

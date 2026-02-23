@@ -86,46 +86,46 @@ export default function Dashboard(){
 
   return (
     <section>
-      <h2>Admin Dashboard</h2>
-      <p>Shows recent appointments (populated via Cal.com webhooks → Supabase or manual inserts).</p>
+      <h2>لوحة الإدارة</h2>
+      <p>تعرض أحدث المواعيد (تصل عبر Webhooks من Cal.com إلى Supabase أو تُضاف يدويًا).</p>
       <form className="form" onSubmit={saveAppointment}>
-        <h3>{form.id ? 'Edit Appointment' : 'Add Appointment'}</h3>
+        <h3>{form.id ? 'تعديل موعد' : 'إضافة موعد'}</h3>
         <label>
-          Customer name
+          اسم المريض
           <input value={form.customer_name} onChange={(e)=>setForm({...form, customer_name:e.target.value})} required />
         </label>
         <label>
-          Customer email
+          بريد المريض
           <input type="email" value={form.customer_email} onChange={(e)=>setForm({...form, customer_email:e.target.value})} />
         </label>
         <label>
-          Start time
+          وقت البداية
           <input type="datetime-local" value={form.start_at} onChange={(e)=>setForm({...form, start_at:e.target.value})} />
         </label>
         <label>
-          End time
+          وقت النهاية
           <input type="datetime-local" value={form.end_at} onChange={(e)=>setForm({...form, end_at:e.target.value})} />
         </label>
         <label>
-          Service
+          الخدمة
           <input value={form.service} onChange={(e)=>setForm({...form, service:e.target.value})} />
         </label>
         <div style={{display:'flex', gap:8}}>
-          <button className="btn" type="submit" disabled={loading}>{form.id ? 'Update' : 'Create'}</button>
-          {form.id && <button className="small" type="button" onClick={()=>setForm({ id:null, customer_name:'', customer_email:'', start_at:'', end_at:'', service:'' })}>Cancel</button>}
+          <button className="btn" type="submit" disabled={loading}>{form.id ? 'تحديث' : 'إنشاء'}</button>
+          {form.id && <button className="small" type="button" onClick={()=>setForm({ id:null, customer_name:'', customer_email:'', start_at:'', end_at:'', service:'' })}>إلغاء</button>}
         </div>
         {error && <p style={{marginTop:10}}>{error}</p>}
       </form>
 
-      {loading && <p>Loading…</p>}
-      {appointments.length === 0 ? <p>No appointments yet.</p> : (
+      {loading && <p>جاري التحميل…</p>}
+      {appointments.length === 0 ? <p>لا توجد مواعيد بعد.</p> : (
         <ul>
           {appointments.map(a => (
             <li key={a.id} style={{display:'flex', justifyContent:'space-between', alignItems:'center'}}>
               <span>{a.customer_name || a.name} — {a.start_at || a.date} — {a.service || a.notes}</span>
               <span style={{display:'flex', gap:8}}>
-                <button className="small" onClick={()=>editAppointment(a)}>Edit</button>
-                <button className="small danger" onClick={()=>deleteAppointment(a.id)}>Delete</button>
+                <button className="small" onClick={()=>editAppointment(a)}>تعديل</button>
+                <button className="small danger" onClick={()=>deleteAppointment(a.id)}>حذف</button>
               </span>
             </li>
           ))}

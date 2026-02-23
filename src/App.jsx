@@ -28,8 +28,8 @@ function App() {
             <div className="brand">
               <div className="brand-mark">🦷</div>
               <div>
-                <div className="brand-name">Bright Smile</div>
-                <div className="brand-sub">Dental Clinic</div>
+                <div className="brand-name">ابتسامة براقة</div>
+                <div className="brand-sub">عيادة الأسنان</div>
               </div>
             </div>
             <button
@@ -38,15 +38,27 @@ function App() {
               aria-expanded={sidebarOpen}
               aria-controls="side-nav"
             >
-              {sidebarOpen ? 'Collapse menu' : 'Expand menu'}
+              {sidebarOpen ? 'طي القائمة' : 'توسيع القائمة'}
             </button>
             <nav className="side-nav" id="side-nav">
-              <Link to="/">Home</Link>
-              <Link to="/book">Book</Link>
-              <Link to="/services">Services</Link>
-              <Link to="/patients">Patients</Link>
-              <Link to="/dashboard">Admin</Link>
-              <Link to="/login">Login</Link>
+              <Link to="/" className="nav-item">
+                <span className="nav-icon">🏠</span><span className="nav-label">الرئيسية</span>
+              </Link>
+              <Link to="/book" className="nav-item">
+                <span className="nav-icon">📅</span><span className="nav-label">الحجز</span>
+              </Link>
+              <Link to="/services" className="nav-item">
+                <span className="nav-icon">✨</span><span className="nav-label">الخدمات</span>
+              </Link>
+              <Link to="/patients" className="nav-item">
+                <span className="nav-icon">👥</span><span className="nav-label">المرضى</span>
+              </Link>
+              <Link to="/dashboard" className="nav-item">
+                <span className="nav-icon">🧾</span><span className="nav-label">الإدارة</span>
+              </Link>
+              <Link to="/login" className="nav-item">
+                <span className="nav-icon">🔐</span><span className="nav-label">تسجيل الدخول</span>
+              </Link>
             </nav>
             <div className="side-footer">
               <AuthButtons />
@@ -54,26 +66,28 @@ function App() {
           </aside>
 
           <div className="content">
-            <header className="site-header">
-              <h1>Bright Smile Dental Clinic</h1>
-              <p>Manage patient appointments quickly and easily.</p>
-            </header>
+            <div className="content-inner">
+              <header className="site-header">
+                <h1>عيادة ابتسامة براقة للأسنان</h1>
+                <p>إدارة مواعيد المرضى بسرعة وسهولة.</p>
+              </header>
 
-            <main>
-              <Routes>
-                <Route path="/" element={<Home/>} />
-                <Route path="/book" element={<Book/>} />
-                <Route path="/services" element={<Services/>} />
-                <Route path="/login" element={<Login/>} />
-                <Route path="/patients" element={<RequireAuth><Patients/></RequireAuth>} />
-                <Route path="/dashboard" element={<RequireAuth><Dashboard/></RequireAuth>} />
-                <Route path="*" element={<NotFound/>} />
-              </Routes>
-            </main>
+              <main>
+                <Routes>
+                  <Route path="/" element={<Home/>} />
+                  <Route path="/book" element={<Book/>} />
+                  <Route path="/services" element={<Services/>} />
+                  <Route path="/login" element={<Login/>} />
+                  <Route path="/patients" element={<RequireAuth><Patients/></RequireAuth>} />
+                  <Route path="/dashboard" element={<RequireAuth><Dashboard/></RequireAuth>} />
+                  <Route path="*" element={<NotFound/>} />
+                </Routes>
+              </main>
 
-            <footer>
-              <small>Built for demo — data stored in Supabase.</small>
-            </footer>
+              <footer>
+                <small>نسخة تجريبية — البيانات محفوظة في Supabase.</small>
+              </footer>
+            </div>
           </div>
         </div>
       </BrowserRouter>
@@ -87,9 +101,9 @@ function AuthButtons() {
     await supabase.auth.signOut()
   }
   return user ? (
-    <button className="small" style={{marginLeft:12}} onClick={handleLogout}>Logout</button>
+    <button className="small" style={{marginLeft:12}} onClick={handleLogout}>تسجيل الخروج</button>
   ) : (
-    <Link to="/login" style={{marginLeft:12}}>Login</Link>
+    <Link to="/login" style={{marginLeft:12}}>تسجيل الدخول</Link>
   )
 }
 

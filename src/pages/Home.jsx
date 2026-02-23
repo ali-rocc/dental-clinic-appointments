@@ -5,31 +5,31 @@ export default function Home(){
     <section>
       <div className="hero">
         <div className="hero-card">
-          <span className="badge">Trusted care • Modern clinic</span>
-          <h2>Comfortable, modern dental care for the whole family</h2>
-          <p>Schedule appointments online, manage patients, and keep your clinic running smoothly.</p>
+          <span className="badge">رعاية موثوقة • عيادة حديثة</span>
+          <h2>رعاية أسنان مريحة وحديثة لكل أفراد الأسرة</h2>
+          <p>احجز المواعيد عبر الإنترنت، وأدر المرضى، وحافظ على سير العمل بسلاسة.</p>
           <div className="hero-actions">
-            <a className="btn" href="/book">Book an appointment</a>
-            <a className="btn secondary" href="/services">View services</a>
+            <a className="btn" href="/book">احجز موعدًا</a>
+            <a className="btn secondary" href="/services">عرض الخدمات</a>
           </div>
         </div>
         <div className="hero-card">
           <div className="grid grid-2">
             <div className="card">
               <div className="stat">4.9★</div>
-              <p>Patient satisfaction</p>
+              <p>رضا المرضى</p>
             </div>
             <div className="card">
-              <div className="stat">12k+</div>
-              <p>Appointments managed</p>
+              <div className="stat">+12 ألف</div>
+              <p>مواعيد مُدارة</p>
             </div>
             <div className="card">
               <div className="stat">24/7</div>
-              <p>Online booking</p>
+              <p>حجز عبر الإنترنت</p>
             </div>
             <div className="card">
               <div className="stat">5</div>
-              <p>Specialist dentists</p>
+              <p>أطباء متخصصون</p>
             </div>
           </div>
         </div>
@@ -37,16 +37,16 @@ export default function Home(){
 
       <div className="grid grid-3" style={{marginTop:18}}>
         <div className="card">
-          <h3>Preventive Care</h3>
-          <p>Cleanings, exams, x-rays, and personalized hygiene plans.</p>
+          <h3>الرعاية الوقائية</h3>
+          <p>تنظيف وفحوصات وأشعة وخطط عناية شخصية.</p>
         </div>
         <div className="card">
-          <h3>Cosmetic Dentistry</h3>
-          <p>Whitening, veneers, and smile makeovers that look natural.</p>
+          <h3>تجميل الأسنان</h3>
+          <p>تبييض وقشور وتجميل ابتسامة بمظهر طبيعي.</p>
         </div>
         <div className="card">
-          <h3>Restorative</h3>
-          <p>Implants, crowns, bridges, and same-day emergency visits.</p>
+          <h3>الترميم</h3>
+          <p>زراعة وتيجان وجسور وزيارات طارئة في نفس اليوم.</p>
         </div>
       </div>
     </section>

@@ -45,7 +45,7 @@ export default function Patients(){
   }
 
   async function deletePatient(id){
-    if (!confirm('Delete this patient?')) return
+    if (!confirm('هل تريد حذف هذا المريض؟')) return
     setLoading(true)
     const { error } = await supabase.from('patients').delete().eq('id', id)
     if (error) setError(error.message)
@@ -58,37 +58,37 @@ export default function Patients(){
 
   return (
     <section>
-      <h2>Patients</h2>
+      <h2>المرضى</h2>
       <form className="form" onSubmit={savePatient}>
-        <h3>{form.id ? 'Edit Patient' : 'Add Patient'}</h3>
+        <h3>{form.id ? 'تعديل مريض' : 'إضافة مريض'}</h3>
         <label>
-          Full name
+          الاسم الكامل
           <input value={form.full_name} onChange={(e)=>setForm({...form, full_name:e.target.value})} required />
         </label>
         <label>
-          Email
+          البريد الإلكتروني
           <input type="email" value={form.email} onChange={(e)=>setForm({...form, email:e.target.value})} />
         </label>
         <label>
-          Phone
+          الهاتف
           <input value={form.phone} onChange={(e)=>setForm({...form, phone:e.target.value})} />
         </label>
         <div style={{display:'flex', gap:8}}>
-          <button className="btn" type="submit" disabled={loading}>{form.id ? 'Update' : 'Create'}</button>
-          {form.id && <button className="small" type="button" onClick={()=>setForm({ id:null, full_name:'', email:'', phone:'' })}>Cancel</button>}
+          <button className="btn" type="submit" disabled={loading}>{form.id ? 'تحديث' : 'إنشاء'}</button>
+          {form.id && <button className="small" type="button" onClick={()=>setForm({ id:null, full_name:'', email:'', phone:'' })}>إلغاء</button>}
         </div>
         {error && <p style={{marginTop:10}}>{error}</p>}
       </form>
 
-      {loading && <p>Loading…</p>}
-      {patients.length === 0 ? <p>No patients found.</p> : (
+      {loading && <p>جاري التحميل…</p>}
+      {patients.length === 0 ? <p>لا يوجد مرضى بعد.</p> : (
         <ul>
           {patients.map(p => (
             <li key={p.id} style={{display:'flex', justifyContent:'space-between', alignItems:'center'}}>
-              <span>{p.full_name || p.name} — {p.email || 'no email'}</span>
+              <span>{p.full_name || p.name} — {p.email || 'بدون بريد'}</span>
               <span style={{display:'flex', gap:8}}>
-                <button className="small" onClick={()=>editPatient(p)}>Edit</button>
-                <button className="small danger" onClick={()=>deletePatient(p.id)}>Delete</button>
+                <button className="small" onClick={()=>editPatient(p)}>تعديل</button>
+                <button className="small danger" onClick={()=>deletePatient(p.id)}>حذف</button>
               </span>
             </li>
           ))}

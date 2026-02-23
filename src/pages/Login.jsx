@@ -14,7 +14,7 @@ export default function Login() {
     const { error } = await supabase.auth.signInWithPassword({ email, password })
     setLoading(false)
     if (error) setMessage(error.message)
-    else setMessage('Signed in')
+    else setMessage('تم تسجيل الدخول')
   }
 
   async function signUp(e) {
@@ -24,25 +24,25 @@ export default function Login() {
     const { error } = await supabase.auth.signUp({ email, password })
     setLoading(false)
     if (error) setMessage(error.message)
-    else setMessage('Check your email to confirm account')
+    else setMessage('تحقق من البريد لتأكيد الحساب')
   }
 
   return (
     <section>
-      <h2>Staff Login</h2>
-      <p>Use your clinic staff account to access admin pages.</p>
+      <h2>تسجيل دخول الموظفين</h2>
+      <p>استخدم حساب الموظفين للوصول إلى صفحات الإدارة.</p>
       <form className="form" onSubmit={signIn}>
         <label>
-          Email
+          البريد الإلكتروني
           <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
         </label>
         <label>
-          Password
+          كلمة المرور
           <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
         </label>
         <div style={{display:'flex', gap:8}}>
-          <button className="btn" type="submit" disabled={loading}>Sign in</button>
-          <button className="small" onClick={signUp} disabled={loading}>Create account</button>
+          <button className="btn" type="submit" disabled={loading}>تسجيل الدخول</button>
+          <button className="small" onClick={signUp} disabled={loading}>إنشاء حساب</button>
         </div>
         {message && <p style={{marginTop:10}}>{message}</p>}
       </form>
