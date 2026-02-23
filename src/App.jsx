@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { BrowserRouter, Routes, Route, Link, Navigate } from 'react-router-dom'
 import Home from './pages/Home'
 import Book from './pages/Book'
@@ -18,20 +18,10 @@ function RequireAuth({ children }) {
 }
 
 function App() {
-  const [sidebarOpen, setSidebarOpen] = useState(true)
-
-  useEffect(() => {
-    const mq = window.matchMedia('(max-width: 900px)')
-    const handle = () => setSidebarOpen(!mq.matches)
-    handle()
-    mq.addEventListener('change', handle)
-    return () => mq.removeEventListener('change', handle)
-  }, [])
-
   return (
     <AuthProvider>
       <BrowserRouter>
-        <div className={`app-shell ${sidebarOpen ? '' : 'sidebar-collapsed'}`}>
+        <div className="app-shell">
           <aside className="sidebar">
             <div className="brand">
               <div className="brand-mark">🦷</div>
@@ -40,14 +30,6 @@ function App() {
                 <div className="brand-sub">عيادة الأسنان</div>
               </div>
             </div>
-            <button
-              className="small toggle"
-              onClick={() => setSidebarOpen((s) => !s)}
-              aria-expanded={sidebarOpen}
-              aria-controls="side-nav"
-            >
-              {sidebarOpen ? 'طي القائمة' : 'توسيع القائمة'}
-            </button>
             <nav className="side-nav" id="side-nav">
               <Link to="/" className="nav-item">
                 <span className="nav-icon">🏠</span><span className="nav-label">الرئيسية</span>
