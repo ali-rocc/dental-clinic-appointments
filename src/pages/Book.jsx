@@ -8,6 +8,25 @@ export default function Book(){
     calComBookingUrl = 'https://' + calComBookingUrl
   }
 
+  // Compute Cal.com embed URL. Cal.com recommends embedding via `https://cal.com/embed/:slug`.
+  // If user provided a booking page like `https://cal.com/username/slug` or `cal.com/username/slug`,
+  // convert it to the embed form. If the URL already contains `/embed/`, use it as-is.
+  let calEmbedUrl = calComBookingUrl
+  try {
+    const u = new URL(calComBookingUrl)
+    // If path already contains /embed, use as-is
+    if (!u.pathname.includes('/embed')) {
+      // Trim leading/trailing slashes and keep path segments
+      const parts = u.pathname.replace(/^\/+|\/+$/g, '').split('/')
+      // Build embed path: join all segments after domain
+      if (parts.length > 0 && parts[0] !== '') {
+        calEmbedUrl = `${u.protocol}//${u.hostname}/embed/${parts.join('/')}`
+      }
+    }
+  } catch (e) {
+    // if URL parsing fails, leave calEmbedUrl as-is
+  }
+
   return (
     <section>
       <h2>Book an Appointment</h2>
